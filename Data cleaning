@@ -50,4 +50,5 @@ Trees_2$Species_index[Trees_2$`Health Status`== 0 & Trees_2$Specie =="Fraxinus e
 Trees_2$Species_index[Trees_2$`Health Status`== 0 & Trees_2$Specie =="Malus sylvestris"] <- MS_D
 Trees_2$Species_index[Trees_2$`Health Status`== 0 & Trees_2$Specie =="Robinia pseudoacacia"] <- RP_D 
 Trees_2$Species_index[Trees_2$`Health Status`== 0 & Trees_2$Specie =="Acer platanoides"] <- AP_D
-
+#Adding volume column
+Trees_2$Volume <- Trees_2$`S of tree` * Trees_2$Height
