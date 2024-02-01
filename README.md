@@ -5,6 +5,7 @@ Statistical analysis of different types of data
 + Cleaning
 + Data processing or calculation
 + Analysis
+  
 **WARNING**
  This made by incredibly unexperienced student who don't know nothing ":)"
 
