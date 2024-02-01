@@ -7,7 +7,7 @@ Statistical analysis of different types of data
 + Analysis
   
 **WARNING**
- This made by incredibly unexperienced student who don't know nothing ":)"
+ This made by incredibly unexperienced student who know nothing
 
 > **Note**
 > Scripts also added by me
