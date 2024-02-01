@@ -1,1 +1,13 @@
+#Translation of species names from Russian code to latin names
 Trees_2$Specie[Trees_2$Specie == "ЛПМ"] <- "Tilia cordata"
+Trees_2$Specie[Trees_2$Specie == "Аб"] <- "Prunus armeniaca"
+Trees_2$Specie[Trees_2$Specie == "Д"] <- "Quercus robur"
+Trees_2$Specie[Trees_2$Specie == "Яс"] <- "Fraxinus excelsior"
+Trees_2$Specie[Trees_2$Specie == "ЯСО"] <- "Fraxinus excelsior"
+Trees_2$Specie[Trees_2$Specie == "ЯБЛ"] <- "Malus sylvestris"
+Trees_2$Specie[Trees_2$Specie == "Рб"] <- "Robinia pseudoacacia"
+Trees_2$Specie[Trees_2$Specie == "Р"] <- "Robinia pseudoacacia"
+Trees_2$Specie[Trees_2$Specie == "КЛО"] <- "Acer platanoides"
+Trees_2$Specie[Trees_2$Specie == "КлО"] <- "Acer platanoides"
+Trees_2$Specie[Trees_2$Specie == "ВЯЗ"] <- "Ulmus glabra"
+
