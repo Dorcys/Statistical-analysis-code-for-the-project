@@ -10,4 +10,21 @@ Trees_2$Specie[Trees_2$Specie == "Р"] <- "Robinia pseudoacacia"
 Trees_2$Specie[Trees_2$Specie == "КЛО"] <- "Acer platanoides"
 Trees_2$Specie[Trees_2$Specie == "КлО"] <- "Acer platanoides"
 Trees_2$Specie[Trees_2$Specie == "ВЯЗ"] <- "Ulmus glabra"
-
+#Summary of species 
+table(Trees_2$Specie)
+#Assign some indexes (15)
+UG <- 0.569
+TC <- 0.472
+TC_D <-  0.463
+AP <- 0.470
+AP_D <- 0.491
+FE <-  0.468
+FE_D <- 0.508
+QR <- 0.494
+QR_D <- 0,505
+MS <-  0.515
+MS_D <-  0.515
+RP <- 0.508
+RP_D <- 0.537
+PA <- 0.550
+PA_D <- 0.569
