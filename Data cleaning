@@ -1,0 +1,1 @@
+Trees_2$Specie[Trees_2$Specie == "ЛПМ"] <- "Tilia cordata"
