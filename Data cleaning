@@ -1,4 +1,7 @@
 library(readr)
+#Fix problem  with "," insted of "."
+locale_dec_comma <- locale(decimal_mark = ",")
+Trees <- read_csv("Trees.csv", locale = locale_dec_comma)
 Trees_2 <- read_csv("Trees.2.csv")
 View(Trees_2)
 #Translation of species names from Russian code to latin names
