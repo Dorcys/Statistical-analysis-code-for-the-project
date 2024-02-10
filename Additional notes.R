@@ -150,3 +150,16 @@ aggregate(x = stud.df$KM,
 stud.df$KM <-  as.numeric(stud.df$KM)
 
 View(stud.df)
+
+                  # Can be used as calculation of amount of T and F  
+n1 <- length(df$use_R)
+n2 <- length(useRlastyear)
+p1 <- sum(df$use_R)/n1
+p2 <- sum(useRlastyear)/n2
+
+library(readr)
+Trees <- read_csv("Trees.csv")
+View(Trees)
+Trees$Specie[Trees$Specie == "ЛПМ"] <- "Tilia cordata"
+View(Trees)
+
