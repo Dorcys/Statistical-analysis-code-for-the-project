@@ -1,4 +1,3 @@
-
 library(readr)
 #Fix problem  with "," insted of "."
 locale_dec_comma <- locale(decimal_mark = ",")
