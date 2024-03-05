@@ -1,4 +1,3 @@
-hiiiiii
 
 library(readr)
 #Fix problem  with "," insted of "."
