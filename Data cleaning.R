@@ -136,7 +136,7 @@ Trees <- Trees %>% rename(Site = Sample)
 Trees <- Trees %>% rename(Area = "S of tree")
 #Volume but still need update
 Trees$Volume[Trees$`Health Status` == 1 & Trees$Specie =="Acer platanoides"] <- Trees$`S of tree`[Trees$`Health Status` == 1 & Trees$Specie =="Acer platanoides"] * 0.47
-
+#Note problem with Trees$Specie need change to nubers not variables 
 
 
 
