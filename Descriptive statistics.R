@@ -1,4 +1,6 @@
+#################################################################################################
 ###### DESCRIPTIVE STATISTICS
+
 # Measures of Central tendency of Volume
 mean(Trees$Volume)
 var(Trees$Volume)
