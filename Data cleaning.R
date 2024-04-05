@@ -259,15 +259,6 @@ locale_dec_comma <- locale(decimal_mark = ",")
 Trees <- read_csv("Trees.csv", locale = locale_dec_comma)
 View(Trees)
 
-# Renaming the "Quantity" column to "N"
-Trees <- Trees %>% rename(N = Quantity)
-
-# Renaming the "Sample" column to "Site"
-Trees <- Trees %>% rename(Site = Sample)
-
-# Renaming the "S of tree" column to "Area"
-Trees <- Trees %>% rename(Area = "S of tree")
-
 #Translating of species names from Russian code to Latin names
 Trees$Specie[Trees$Specie == "ЛПМ"] <- "Tilia cordata"
 Trees$Specie[Trees$Specie == "Аб"] <- "Prunus armeniaca"
@@ -329,7 +320,9 @@ PA <- Trees$`Health Status` == 1 & Trees$Specie =="Prunus armeniaca"
 PA_D <- Trees$`Health Status` == 0 & Trees$Specie =="Prunus armeniaca"
 
 #The volume of trees, calculation depends on specie and their health status
+#The volume of tress, calculatiuon depends on specie and their health status
 Trees$Volume <- NA
+
 Trees$Volume[UG] <- Trees$Height[UG] * Trees$`S of tree`[UG] * Trees$Species_index[UG]
 
 Trees$Volume[UG] <- Trees$Height[UG] * Trees$`S of tree`[UG] * Trees$Species_index[UG]
@@ -356,12 +349,12 @@ Trees$Volume[PA ] <- Trees$Height[PA ] * Trees$`S of tree`[PA ] * Trees$Species_
 Trees$Volume[PA_D] <- Trees$Height[PA_D] * Trees$`S of tree`[PA_D] * Trees$Species_index[PA_D]
 
 
+### Changing names of the columns 
+# Renaming the "Quantity" column to "N"
+Trees <- Trees %>% rename(N = Quantity)
 
+# Renaming the "Sample" column to "Site"
+Trees <- Trees %>% rename(Site = Sample)
 
-
-
-
-
-
-
-
+# Renaming the "S of tree" column to "Area"
+Trees <- Trees %>% rename(Area = "S of tree")
