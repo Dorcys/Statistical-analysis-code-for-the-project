@@ -209,6 +209,15 @@ Trees$Volume[Trees$`Health Status` == 1 & Trees$Specie =="Acer platanoides"] <- 
 #Note problem with Trees$Specie need change to nubers not variables 
 
 
+
+
+
+
+
+
+
+
+
 ###### DESCRIPTIVE STATISTICS
 # Measures of Central tendency of Volume
 mean(Trees$Volume)
