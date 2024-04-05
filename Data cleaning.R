@@ -196,6 +196,12 @@ Trees$Volume <- Trees$`S of tree` * Trees$Height
 
 ### we need to add s of trees * trees height * indexes for each species
 
+
+
+
+
+
+
 # Renaming the "Quantity" column to "N"
 Trees <- Trees %>% rename(N = Quantity)
 
