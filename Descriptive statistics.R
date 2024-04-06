@@ -32,43 +32,58 @@ median_south <- median(south$Volume)
 variance_south <- var(south$Volume)
 stdev_south <- sd(south$Volume)
 
-# Comparison between north and south species 
+# Filtering species in north and south 
 table(south$Specie)
 table(north$Specie)
 
-###  Acer platanoides
-# Filtering north and south subset 
+#  Acer platanoides
 AP_N <- subset(north, Specie == "Acer platanoides")
 AP_S <- subset(south, Specie == "Acer platanoides")
-View(AP_N)
-View(AP_S)
 
-# Calculate the mean volume 
-Volume_AP_N <- mean(AP_N$Volume)
-Volume_AP_S <- mean(AP_S$Volume)
-print(Volume_AP_N)
-print(Volume_AP_S)
-
-### Fraxinus excelsior
-# Filtering north and south subset 
+# Fraxinus excelsior
 FE_N <- subset(north, Specie == "Fraxinus excelsior")
 FE_S <- subset(south, Specie == "Fraxinus excelsior")
 
-# Calculating the mean volume
-Volume_FE_N <- mean(FE_N$Volume)
-Volume_FE_S <- mean(FE_S$Volume)
-print(Volume_FE_N)
-print(Volume_FE_S)
-
-### Quercus robur
-# Filtering north and south subset 
+# Quercus robur
 QR_N <- subset(north, Specie == "Quercus robur")
 QR_S <- subset(south, Specie == "Quercus robur")
 
-# Calculating the mean volume
-Volume_QR_N <- mean(QR_N$Volume)
-Volume_QR_S <- mean(QR_S$Volume)
-print(Volume_QR_N)
-print(Volume_QR_S)
+## Measures of Central tendency
+# Acer platanoides
+# North
+AP_mean_north <- mean(AP_N$Volume)
+AP_median_north <- median(AP_N$Volume)
+AP_variance_north <- var(AP_N$Volume)
+AP_stdev_north <- sd(AP_N$Volume)
 
+# South
+AP_mean_south <- mean(AP_S$Volume)
+AP_median_south <- median(AP_S$Volume)
+AP_variance_south <- var(AP_S$Volume)
+AP_stdev_south <- sd(AP_S$Volume)
 
+## Fraxinus excelsior
+# North 
+FE_mean_north <- mean(FE_N$Volume)
+FE_median_north <- median(FE_N$Volume)
+FE_variance_north <- var(FE_N$Volume)
+FE_stdev_north <- sd(FE_N$Volume)
+
+# South
+FE_mean_south <- mean(FE_S$Volume)
+FE_median_south <- median(FE_S$Volume)
+FE_variance_south <- var(FE_S$Volume)
+FE_stdev_south <- sd(FE_S$Volume)
+
+## Quercus robur
+# North 
+QR_mean_north <- mean(QR_N$Volume)
+QR_median_north <- median(QR_N$Volume)
+QR_variance_north <- var(QR_N$Volume)
+QR_stdev_north <- sd(QR_N$Volume)
+
+# South
+QR_mean_south <- mean(QR_S$Volume)
+QR_median_south <- median(QR_S$Volume)
+QR_variance_south <- var(QR_S$Volume)
+QR_stdev_south <- sd(QR_S$Volume)
