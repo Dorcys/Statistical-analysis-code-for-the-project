@@ -140,31 +140,8 @@ legend("topright", legend = c("Alive: 86.3%",
                                 "Dead: 13.7%"),
        fill = piehealthcol)
 
-## Plotting Bar Graphs
-    # creating a vector
-speci_vol_forest_N <- c(AP_mean_north,FE_mean_north,QR_mean_north)
-speci_vol_forest_S <- c(AP_mean_south,FE_mean_south,QR_mean_south)
-species_vol_forest_name <- c("A.p. N","A.p. S","F.e. N","F.e. S","Q.r. N", "Q.r. S")         # 1 version
-species_vol_forest_name <- c("Acer platanoides","Fraxinus excelsior","Quercus robur")        # another version but still needs fixing!!!!
-barplot(species_vol_forest, xlab= "Tree Species", ylab= "Mean Volume of Trees in Cubic Meters",
-        names.arg = species_vol_forest_name, main = "Comparison of Tree Volume of Species in North and South Forests",
-        ylim=c(0,0.6))
 
-    # Bar plot where the bars are next to each other
-?barplot
-survey <- rbind(speci_vol_forest_N, speci_vol_forest_S)
-barplot(survey,
-        beside = TRUE,
-        col = c("dodgerblue3", "skyblue1","darkgreen", "lightgreen","orange", "lightyellow"), 
-        legend.text = rownames(species_vol_forest_name),
-        args.legend = list(cex=0.75,x = "topright"),
-        ylim = c(0,0.6), main = "Comparison of Tree Volume of Species in North and South Forests")
-?barplot
-
-
-
-
-############## PAula 
+############## Paula 
 ## Plotting Bar Graphs
 # creating a vector
 speci_vol_forest_N <- c(AP_mean_north,FE_mean_north,QR_mean_north)
@@ -178,15 +155,10 @@ bar_width <- 0.3
 bar_pos <- barplot(survey,
            beside = TRUE,
            col = c("dodgerblue3", "skyblue1", "darkgreen", "lightgreen", "orange", "lightyellow"), 
-           names.arg = species_vol_forest_name,  # Specifying x-axis labels
-           legend.text = rownames(species_vol_forest_name),
-           args.legend = list(cex = 0.75, x = "topright"),
            ylim = c(0, 0.6),
            main = "Comparison of Tree Volume of Species in North and South Forests",
-           xlab = "Species")  # Adding x-axis label
-
-# Calculate the x-coordinate positions for the centers of each pair of bars
-bar_centers <- apply(bar_pos, 2, mean)
+           xlab = "Species",
+           font.lab=2)
 
 # Calculate the x-coordinate positions for the centers of each pair of bars
 bar_centers <- bar_pos[1,] + bar_width/2
@@ -196,4 +168,6 @@ label_x_positions <- c(bar_centers - bar_width/2, bar_centers + bar_width/2 + 0.
 
 # Adding "N" and "S" labels under bars
 text(label_x_positions, par("usr")[3] - 0.01, labels = rep(c("N", "S"), each = 3), xpd = TRUE)
+
+text(bar_centers, par("usr")[3] - 0.05, labels = species_vol_forest_name, xpd = TRUE, adj = 0.1, cex = 1)
 
