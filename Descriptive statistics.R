@@ -87,3 +87,55 @@ QR_mean_south <- mean(QR_S$Volume)
 QR_median_south <- median(QR_S$Volume)
 QR_variance_south <- var(QR_S$Volume)
 QR_stdev_south <- sd(QR_S$Volume)
+
+### Graphs
+##  Pie charts: Health Status for North and South Forests
+## Separating health status column from the dataset
+Health_north <- table(north$`Health Status`)
+Health_south <- table(south$`Health Status`)
+    
+    ## creating a pie chart for North forest
+    #  creating a data frame
+Health_north_df <- data.frame(Health_north)
+
+    # Calculating % of alive/dead trees 
+sum(Health_north_df$Freq)
+Health_north_df$percent <- round(Health_north_df$Freq/sum(Health_north_df$Freq)*100,1)
+Health_north_df$perc_label <- paste0(Health_north_df$percent, "%")
+    
+    # Plotting pie chart
+pie_health_north <- pie(x = Health_north_df$Freq,
+    labels = Health_north_df$perc_label,
+    col = c("#FF6169", "lightgreen"),
+    main = "Health Status of Trees in the North Forest")
+
+    # color pallet for the pie chart
+piehealthcol <- (col= c("lightgreen","#FF6169"))
+
+    # Adding a legend
+legend("topright", legend = c("Alive: 90.5%",
+                            "Dead: 9.5%"),
+       fill = piehealthcol)
+
+    ## creating a pie chart for South forest
+    #  creating a data frame
+Health_south_df <- data.frame(Health_south)
+
+    # Calculating % of alive/dead trees 
+sum(Health_south_df$Freq)
+Health_south_df$percent <- round(Health_south_df$Freq/sum(Health_south_df$Freq)*100,1)
+Health_south_df$perc_label <- paste0(Health_south_df$percent, "%")
+
+    # Plotting pie chart
+pie_health_south <- pie(x = Health_south_df$Freq,
+    labels = Health_south_df$perc_label,
+    col = c("#FF6169", "lightgreen"),
+    main = "Health Status of Trees in the South Forest")
+
+    # color pallet for the pie chart
+piehealthcol <- (col= c("lightgreen","#FF6169"))
+
+    # Adding a legend
+legend("topright", legend = c("Alive: 86.3%",
+                                "Dead: 13.7%"),
+       fill = piehealthcol)
