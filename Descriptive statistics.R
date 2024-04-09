@@ -160,3 +160,40 @@ barplot(survey,
         args.legend = list(cex=0.75,x = "topright"),
         ylim = c(0,0.6), main = "Comparison of Tree Volume of Species in North and South Forests")
 ?barplot
+
+
+
+
+############## PAula 
+## Plotting Bar Graphs
+# creating a vector
+speci_vol_forest_N <- c(AP_mean_north,FE_mean_north,QR_mean_north)
+speci_vol_forest_S <- c(AP_mean_south,FE_mean_south,QR_mean_south)
+species_vol_forest_name <- c("Acer platanoides","Fraxinus excelsior","Quercus robur")
+
+# Bar plot where the bars are next to each other
+survey <- rbind(speci_vol_forest_N, speci_vol_forest_S)
+
+bar_width <- 0.3 
+bar_pos <- barplot(survey,
+           beside = TRUE,
+           col = c("dodgerblue3", "skyblue1", "darkgreen", "lightgreen", "orange", "lightyellow"), 
+           names.arg = species_vol_forest_name,  # Specifying x-axis labels
+           legend.text = rownames(species_vol_forest_name),
+           args.legend = list(cex = 0.75, x = "topright"),
+           ylim = c(0, 0.6),
+           main = "Comparison of Tree Volume of Species in North and South Forests",
+           xlab = "Species")  # Adding x-axis label
+
+# Calculate the x-coordinate positions for the centers of each pair of bars
+bar_centers <- apply(bar_pos, 2, mean)
+
+# Calculate the x-coordinate positions for the centers of each pair of bars
+bar_centers <- bar_pos[1,] + bar_width/2
+
+# Calculate the x-coordinate positions for "N" and "S" labels
+label_x_positions <- c(bar_centers - bar_width/2, bar_centers + bar_width/2 + 0.7)
+
+# Adding "N" and "S" labels under bars
+text(label_x_positions, par("usr")[3] - 0.01, labels = rep(c("N", "S"), each = 3), xpd = TRUE)
+
