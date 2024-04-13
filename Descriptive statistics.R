@@ -141,22 +141,18 @@ legend("topright", legend = c("Alive: 86.3%",
        fill = piehealthcol)
 
 
-############## Paula 
 ## Plotting Bar Graphs
-# creating a vector
+# Creating a vector
 speci_vol_forest_N <- c(AP_mean_north,FE_mean_north,QR_mean_north)
 speci_vol_forest_S <- c(AP_mean_south,FE_mean_south,QR_mean_south)
-species_vol_forest_name <- c("Acer platanoides","Fraxinus excelsior","Quercus robur")
 
 # Bar plot where the bars are next to each other
 survey <- rbind(speci_vol_forest_N, speci_vol_forest_S)
-
 bar_width <- 0.3 
 bar_pos <- barplot(survey,
         beside = TRUE,
         col = c("darkblue", "cornflowerblue","darkgreen", "lightgreen","#E68613", "#FEFE33"),
         names.arg = expression(italic("Acer platanoides"), italic("Fraxinus excelsior"), italic("Quercus robur")),
-        legend.text = rownames(species_vol_forest_name),
         ylim = c(0,0.7), main = "Comparison of Tree Volume of Species in North and South Forests",
         xlab = "Species",
         font.lab=2,
@@ -171,7 +167,7 @@ label_x_positions <- c(bar_centers - bar_width/2, bar_centers + bar_width/2 + 0.
 # Adding "N" and "S" labels under bars
 text(label_x_positions, par("usr")[3] - 0.01, labels = rep(c("N", "S"), each = 3), xpd = TRUE)
 
-# calculating the standard error for the error bars
+# Calculating the standard error for the error bars
 se_AP_N = AP_stdev_north / sqrt(length(AP_N))   # standard error Acer p. North
 se_AP_S = AP_stdev_south / sqrt(length(AP_S))   # standard error Acer p. South
 se_FE_N = FE_stdev_north / sqrt(length(FE_N))   # standard error Fraxinus e. North
