@@ -153,12 +153,14 @@ survey <- rbind(speci_vol_forest_N, speci_vol_forest_S)
 
 bar_width <- 0.3 
 bar_pos <- barplot(survey,
-           beside = TRUE,
-           col = c("dodgerblue3", "skyblue1", "darkgreen", "lightgreen", "orange", "lightyellow"), 
-           ylim = c(0, 0.6),
-           main = "Comparison of Tree Volume of Species in North and South Forests",
-           xlab = "Species",
-           font.lab=2)
+        beside = TRUE,
+        col = c("darkblue", "cornflowerblue","darkgreen", "lightgreen","#E68613", "#FEFE33"),
+        names.arg = expression(italic("Acer platanoides"), italic("Fraxinus excelsior"), italic("Quercus robur")),
+        legend.text = rownames(species_vol_forest_name),
+        ylim = c(0,0.7), main = "Comparison of Tree Volume of Species in North and South Forests",
+        xlab = "Species",
+        font.lab=2,
+        ylab = "Mean Volume in Cubic Meters")
 
 # Calculate the x-coordinate positions for the centers of each pair of bars
 bar_centers <- bar_pos[1,] + bar_width/2
@@ -169,5 +171,11 @@ label_x_positions <- c(bar_centers - bar_width/2, bar_centers + bar_width/2 + 0.
 # Adding "N" and "S" labels under bars
 text(label_x_positions, par("usr")[3] - 0.01, labels = rep(c("N", "S"), each = 3), xpd = TRUE)
 
-text(bar_centers, par("usr")[3] - 0.05, labels = species_vol_forest_name, xpd = TRUE, adj = 0.1, cex = 1)
+# calculating the standard error for the error bars
+se_AP_N = AP_stdev_north / sqrt(length(AP_N))   # standard error Acer p. North
+se_AP_S = AP_stdev_south / sqrt(length(AP_S))   # standard error Acer p. South
+se_FE_N = FE_stdev_north / sqrt(length(FE_N))   # standard error Fraxinus e. North
+se_FE_S = FE_stdev_south / sqrt(length(FE_S))   # standard error Fraxinus e. South
+se_QR_N = QR_stdev_north / sqrt(length(QR_N))   # standard error Quercus r. North
+se_QR_S = QR_stdev_south / sqrt(length(QR_S))   # standard error Quercus r. South
 
