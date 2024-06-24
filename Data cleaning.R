@@ -94,3 +94,13 @@ Trees$Volume[RP_D] <- Trees$Height[RP_D] * Trees$`S of tree`[RP_D] * Trees$Speci
 
 Trees$Volume[PA ] <- Trees$Height[PA ] * Trees$`S of tree`[PA ] * Trees$Species_index[PA ]
 Trees$Volume[PA_D] <- Trees$Height[PA_D] * Trees$`S of tree`[PA_D] * Trees$Species_index[PA_D]
+
+# Changing names of the columns 
+# Renaming the "Quantity" column to "N"
+Trees <- Trees %>% rename(N = Quantity)
+
+# Renaming the "Sample" column to "Site"
+Trees <- Trees %>% rename(Site = Sample)
+
+# Renaming the "S of tree" column to "Area"
+Trees <- Trees %>% rename(Area = "S of tree")
