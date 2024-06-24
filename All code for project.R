@@ -1,0 +1,16 @@
+###### !!!!DESCRIPTIVE STATISTICS!!!! ###### 
+# Measures of Central tendency of Volume (Volume used as main indicator of trees life)
+mean(Trees$Volume)
+var(Trees$Volume)
+sd(Trees$Volume)
+median(Trees$Volume)
+quantile(Trees$Volume)
+summary(Trees$Volume)
+
+# Subsets of North and South locations (To compare influance of different climate zones)
+north <- subset(Trees, Site %in% c("N1", "N2", "N3"))
+south <- subset(Trees, Site %in% c("S1", "S2", "S3"))
+View(north)
+View(south)
+summary(north$Volume)
+summary(south$Volume)
