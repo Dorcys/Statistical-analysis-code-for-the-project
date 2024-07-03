@@ -13,6 +13,7 @@ Trees$Specie[Trees$Specie == "ЛПМ"] <- "Tilia cordata"
 Trees$Specie[Trees$Specie == "Аб"] <- "Prunus armeniaca"
 Trees$Specie[Trees$Specie == "Д"] <- "Quercus robur"
 Trees$Specie[Trees$Specie == "Яс"] <- "Fraxinus excelsior"
+Trees$Specie[Trees$Specie == "ЯС"] <- "Fraxinus excelsior"
 Trees$Specie[Trees$Specie == "ЯСО"] <- "Fraxinus excelsior"
 Trees$Specie[Trees$Specie == "ЯБЛ"] <- "Malus sylvestris"
 Trees$Specie[Trees$Specie == "Рб"] <- "Robinia pseudoacacia"
@@ -20,6 +21,7 @@ Trees$Specie[Trees$Specie == "Р"] <- "Robinia pseudoacacia"
 Trees$Specie[Trees$Specie == "КЛО"] <- "Acer platanoides"
 Trees$Specie[Trees$Specie == "КлО"] <- "Acer platanoides"
 Trees$Specie[Trees$Specie == "ВЯЗ"] <- "Ulmus glabra"
+Trees$Specie[Trees$Specie == "ВЗ"] <- "Ulmus glabra"
 #Summary of species 
 table(Trees$Specie)
 
@@ -92,7 +94,7 @@ Trees$Volume[MS_D] <- Trees$Height[MS_D] * Trees$`S of tree`[MS_D] * Trees$Speci
 Trees$Volume[RP] <- Trees$Height[RP] * Trees$`S of tree`[RP] * Trees$Species_index[RP]
 Trees$Volume[RP_D] <- Trees$Height[RP_D] * Trees$`S of tree`[RP_D] * Trees$Species_index[RP_D]
 
-Trees$Volume[PA ] <- Trees$Height[PA ] * Trees$`S of tree`[PA ] * Trees$Species_index[PA ]
+Trees$Volume[PA] <- Trees$Height[PA] * Trees$`S of tree`[PA] * Trees$Species_index[PA]
 Trees$Volume[PA_D] <- Trees$Height[PA_D] * Trees$`S of tree`[PA_D] * Trees$Species_index[PA_D]
 
 # Changing names of the columns 
@@ -104,8 +106,11 @@ Trees <- Trees %>% rename(Site = Sample)
 
 # Renaming the "S of tree" column to "Area"
 Trees <- Trees %>% rename(Area = "S of tree")
+
+
 ###### !!!!DESCRIPTIVE STATISTICS!!!! ###### 
-# Measures of Central tendency of Volume (Volume used as main indicator of trees life)
+
+# Measures of Central tendency of Volume (Volume used as main indicator of trees life state)
 mean(Trees$Volume)
 var(Trees$Volume)
 sd(Trees$Volume)
@@ -113,10 +118,86 @@ median(Trees$Volume)
 quantile(Trees$Volume)
 summary(Trees$Volume)
 
-# Subsets of North and South locations (To compare influance of different climate zones)
+#Next, we will split our data into North and South regions 
+#to further examine the influence of cymatic conditions on tree development.
+# Subsets of North and South locations
 north <- subset(Trees, Site %in% c("N1", "N2", "N3"))
 south <- subset(Trees, Site %in% c("S1", "S2", "S3"))
 View(north)
 View(south)
 summary(north$Volume)
 summary(south$Volume)
+# Measures of Central tendency of Volume 
+# North locations
+mean_north <- mean(north$Volume)
+median_north <- median(north$Volume)
+variance_north <- var(north$Volume)
+stdev_north <- sd(north$Volume)
+# South locations
+mean_south <- mean(south$Volume)
+median_south <- median(south$Volume)
+variance_south <- var(south$Volume)
+stdev_south <- sd(south$Volume)
+#Next we will compare the same tree species in the north and south.
+# Filtering species in north and south to find common species
+table(south$Specie)
+table(north$Specie)
+#  Acer platanoides
+AP_N <- subset(north, Specie == "Acer platanoides")
+AP_S <- subset(south, Specie == "Acer platanoides")
+# Fraxinus excelsior
+FE_N <- subset(north, Specie == "Fraxinus excelsior")
+FE_S <- subset(south, Specie == "Fraxinus excelsior")
+# Quercus robur
+QR_N <- subset(north, Specie == "Quercus robur")
+QR_S <- subset(south, Specie == "Quercus robur")
+## Measures of Central tendency
+# Acer platanoides
+# North
+AP_mean_north <- mean(AP_N$Volume)
+AP_median_north <- median(AP_N$Volume)
+AP_variance_north <- var(AP_N$Volume)
+AP_stdev_north <- sd(AP_N$Volume)
+# South
+AP_mean_south <- mean(AP_S$Volume)
+AP_median_south <- median(AP_S$Volume)
+AP_variance_south <- var(AP_S$Volume)
+AP_stdev_south <- sd(AP_S$Volume)
+# Fraxinus excelsior
+# North 
+FE_mean_north <- mean(FE_N$Volume)
+FE_median_north <- median(FE_N$Volume)
+FE_variance_north <- var(FE_N$Volume)
+FE_stdev_north <- sd(FE_N$Volume)
+# South
+FE_mean_south <- mean(FE_S$Volume)
+FE_median_south <- median(FE_S$Volume)
+FE_variance_south <- var(FE_S$Volume)
+FE_stdev_south <- sd(FE_S$Volume)
+# Quercus robur
+# North 
+QR_mean_north <- mean(QR_N$Volume)
+QR_median_north <- median(QR_N$Volume)
+QR_variance_north <- var(QR_N$Volume)
+QR_stdev_north <- sd(QR_N$Volume)
+# South
+QR_mean_south <- mean(QR_S$Volume)
+QR_median_south <- median(QR_S$Volume)
+QR_variance_south <- var(QR_S$Volume)
+QR_stdev_south <- sd(QR_S$Volume)
+
+#Calculation of covariance correlation coefficient
+cov(Trees$`Mean D.`, Trees$Height)
+cor(Trees$`Mean D.`, Trees$Height)
+cor(north$`Mean D.`, north$Height)
+cor(south$`Mean D.`, south$Height)
+
+#Plots with regression model 
+x <- Trees$`Mean D.`
+y <- Trees$Height
+# fit a linear regression model
+fit <- lm(y ~ x)
+# create a scatter plot of the data
+plot(x, y)
+# add the regression line to the plot
+abline(fit, col = "red")
