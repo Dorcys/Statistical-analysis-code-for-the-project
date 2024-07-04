@@ -127,7 +127,6 @@ View(north)
 View(south)
 summary(north$Volume)
 summary(south$Volume)
-
 # Measures of Central tendency of Volume 
 # North locations
 mean_north <- mean(north$Volume)
@@ -139,6 +138,7 @@ mean_south <- mean(south$Volume)
 median_south <- median(south$Volume)
 variance_south <- var(south$Volume)
 stdev_south <- sd(south$Volume)
+
 #Next we will compare the same tree species in the north and south.
 # Filtering species in north and south to find common species
 table(south$Specie)
@@ -186,7 +186,59 @@ QR_mean_south <- mean(QR_S$Volume)
 QR_median_south <- median(QR_S$Volume)
 QR_variance_south <- var(QR_S$Volume)
 QR_stdev_south <- sd(QR_S$Volume)
+#We compared volume within regions and species in addition to that we gonna compere more variable
 
+#The results might be the same as we had in volume calculations, 
+#because the diameter and height are directly used in volume calculations
+#Comparison of hightn mean diameter in whole forest
+mean(Trees$`Mean D.`)
+mean(Trees$Height)
+median(Trees$`Mean D.`)
+median(Trees$Height)
+var(Trees$`Mean D.`)
+var(Trees$Height)
+sd(Trees$`Mean D.`)
+sd(Trees$Height)
+#Comparison between North & South 
+#North
+mean(north$`Mean D.`)
+mean(north$Height)
+median(north$`Mean D.`)
+median(north$Height)
+var(north$`Mean D.`)
+var(north$Height)
+sd(north$`Mean D.`)
+sd(north$Height)
+#South
+mean(south$`Mean D.`)
+mean(south$Height)
+median(south$`Mean D.`)
+median(south$Height)
+var(south$`Mean D.`)
+var(south$Height)
+sd(south$`Mean D.`)
+sd(south$Height)
+
+#Now same but within species in different sites 
+#AP_N QR_N FE_N
+#AP_S QR_S FE_S
+mean(AP_N$`Mean D.`)
+mean(AP_N$Height)
+mean(AP_S$`Mean D.`)
+mean(AP_S$Height) 
+
+mean(QR_N$`Mean D.`)
+mean(QR_N$Height)
+mean(QR_S$`Mean D.`)
+mean(QR_S$Height)
+
+mean(FE_N$`Mean D.`)
+mean(FE_N$Height)
+mean(FE_S$`Mean D.`)
+mean(FE_S$Height)
+
+
+#####Some underdeveloped stuff#####
 #Calculation of covariance correlation coefficient
 cov(Trees$`Mean D.`, Trees$Height)
 cor(Trees$`Mean D.`, Trees$Height)
