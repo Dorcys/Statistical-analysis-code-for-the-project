@@ -201,3 +201,221 @@ fit <- lm(y ~ x)
 plot(x, y)
 # add the regression line to the plot
 abline(fit, col = "red")
+
+### DESCRIPTIVE STATISTICS ### GRAPHS
+
+    ### 1. Bar plot showing mean volumes of trees for North and South sites
+    # Changing font
+par(family = "serif")
+    # Organizing north and south sites  
+sites <- c("North", "South")
+mean_volumes <- c(mean_north, mean_south)
+    # Creating bar plot
+bar_positions <- barplot(mean_volumes, 
+                         names.arg = sites, 
+                         col = c("#00B8E7", "#F8766D"),
+                         main = "Mean Volume of Trees in North and South Sites",
+                         ylab = "Mean Volume",
+                         xlab = "Site",
+                         ylim = c(0, 0.35))
+    # Adding the exact mean volume value above each bar for clear comparison
+text(x = bar_positions, y = mean_volumes, 
+     labels = round(mean_volumes, 3), 
+     pos = 3, cex = 0.8, col = "black")
+
+
+    ### 2. Pie chart showing health status of trees in each forest (north and south)
+    # Creating two plots on the same frame
+par(mfrow = c(1, 2), family = "serif")
+    # Separating health status column from the dataset
+Health_north <- table(north$`Health Status`)
+Health_south <- table(south$`Health Status`)
+    # Creating a pie chart for North forest
+Health_north_df <- data.frame(Health_north)
+    # Calculating % of alive/dead trees 
+sum(Health_north_df$Freq)
+Health_north_df$percent <- round(Health_north_df$Freq/sum(Health_north_df$Freq)*100,1)
+Health_north_df$perc_label <- paste0(Health_north_df$percent, "%")
+    # Plotting pie chart
+pie_health_north <- pie(x = Health_north_df$Freq,
+                        labels = Health_north_df$perc_label,
+                        col = c("#FF6169", "lightgreen"),
+                        main = "North Forest",
+                        cex.main = 1.2,
+                        line = 0)
+    # Creating a color pallet for the pie chart
+piehealthcol <- (col= c("lightgreen","#FF6169"))
+    # Adding a legend
+legend("bottomleft", legend = c("Alive: 96.3%",
+                              "Dead: 3.7%"),
+       fill = piehealthcol,
+       bty = "n")
+
+    # Creating a pie chart for South forest
+Health_south_df <- data.frame(Health_south)
+    # Calculating % of alive/dead trees 
+sum(Health_south_df$Freq)
+Health_south_df$percent <- round(Health_south_df$Freq/sum(Health_south_df$Freq)*100,1)
+Health_south_df$perc_label <- paste0(Health_south_df$percent, "%")
+    # Plotting pie chart
+
+
+pie_health_south <- pie(x = Health_south_df$Freq,
+                        labels = Health_south_df$perc_label,
+                        col = c("#FF6169", "lightgreen"),
+                        main = "South Forest",
+                        cex.main = 1.2,
+                        line = 0)
+    # Creating a color pallet for the pie chart
+piehealthcol <- (col= c("lightgreen","#FF6169"))
+    # Adding a legend
+legend("bottomleft", legend = c("Alive: 98.7%",
+                              "Dead: 1.3%"),
+       
+       fill = piehealthcol,
+       bty = "n")
+    # Adding a title to the whole plot
+mtext("Health Status of Trees in North and South Forests", 
+      side = 1, line = -2, cex = 1.7, font = 2, outer = TRUE)
+dev.off()
+
+
+    ### 3. Number and type of different species in each forest (North and South)
+par(family = "serif")
+    # Filtering the number of species in the north forest
+north_specie_count <- Trees %>%
+  filter(Site %in% c("N1", "N2", "N3")) %>%
+  group_by(Specie) %>%
+  summarise(Count_North = n()) %>%
+  arrange(Specie)
+    # Filtering the number of species in the south forest
+south_specie_count <- Trees %>%
+  filter(Site %in% c("S1", "S2", "S3")) %>%
+  group_by(Specie) %>%
+  summarise(Count_South = n()) %>%
+  arrange(Specie)
+   
+   # Merging the North and South species
+combined_counts <- full_join(north_specie_count, south_specie_count, by = "Specie")
+combined_counts[is.na(combined_counts)] <- 0
+
+    # Data for the bar plot
+species <- combined_counts$Specie
+counts <- rbind(combined_counts$Count_North, combined_counts$Count_South)
+colors <- c("yellowgreen", "gold")
+
+    # Creating a grouped bar plot
+barplot(counts,
+        beside = TRUE,
+        #names.arg = species,
+        col = colors,
+        las = 2,
+        main = "Number of Each Species in North and South Forests",
+        ylab = "Number of Trees",
+        xlab = "Species",
+        ylim = c(0, max(counts) * 1.2),
+        legend = c("North Site", "South Site"),
+        args.legend = list(x = "topright", bty = "n"))
+
+    # Adding grid lines to the bar plot
+grid(nx = NA, ny = NULL, col = "gray", lty = "dotted", lwd = 0.5)
+
+    # Placing grid lines behind the bar plot
+bar_positions <- barplot(counts,
+                         beside = TRUE,
+                         col = colors,
+                         las = 2,
+                         main = "",
+                         ylab = "",
+                         xlab = "",
+                         ylim = c(0, max(counts) * 1.2),
+                         xaxt = 'n',  
+                         add = TRUE)  
+
+    # Calculating the midpoints for each grouped bars
+midpoints <- colMeans(bar_positions)
+    # Creating the x-axis labels
+text(x = midpoints,
+     y = -0.5,  
+     labels = species,
+     srt = 35,  
+     adj = c(1.0, 0.5),  
+     xpd = TRUE, 
+     cex = 0.8) 
+dev.off()
+
+
+    ### 4. Box plots for mean volume of trees in the North and South sites
+library(ggplot2)
+library(dplyr)
+
+    # Filtering the data for the North and South Sites
+north <- Trees %>% filter(Site %in% c("N1", "N2", "N3"))
+south <- Trees %>% filter(Site %in% c("S1", "S2", "S3"))
+
+    # Combining North and South sites in a single data frame
+Trees_combined <- rbind(
+  north %>% mutate(Region = "North"),
+  south %>% mutate(Region = "South")
+)
+
+    # Plotting
+ggplot(Trees_combined, aes(x = Region, y = Volume, fill = Region)) +
+  geom_boxplot() +
+  scale_fill_manual(values = c("North" = "purple", "South" = "#F8766D")) +
+  labs(title = "Volume of Trees in Each Site",
+       x = "Region",
+       y = "Volume") +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    plot.title = element_text(hjust = 0.5) 
+  ) +
+  coord_cartesian(ylim = c(0, 0.8))  
+
+
+    ### 5. Bar graph comparing the same species in North and South Sites
+    #Creating an object for the common species between North and South Sites
+common_species <- intersect(north$Specie, south$Specie)
+    # Sub-setting data
+north_common <- subset(north, Specie %in% common_species)
+south_common <- subset(south, Specie %in% common_species)
+    # Calculating the mean volume for each shared species in North and South Sites
+mean_volume_north <- north_common %>%
+  group_by(Specie) %>%
+  summarise(mean_volume = mean(Volume, na.rm = TRUE))
+
+mean_volume_south <- south_common %>%
+  group_by(Specie) %>%
+  summarise(mean_volume = mean(Volume, na.rm = TRUE))
+
+mean_volume_data <- merge(mean_volume_north, mean_volume_south, by = "Specie", suffixes = c("_North", "_South"))
+
+mean_volume_long <- tidyr::gather(mean_volume_data, key = "Region", value = "Mean_Volume", mean_volume_North, mean_volume_South)
+
+    # Creating bar plot
+ggplot(mean_volume_long, aes(x = Specie, y = Mean_Volume, fill = Region)) +
+  geom_bar(stat = "identity", position = position_dodge()) +
+  geom_text(aes(label = round(Mean_Volume, 3)), 
+            position = position_dodge(width = 0.8), 
+            vjust = -0.5, size = 3) +
+  labs(title = "Mean Volume of Common Tree Species in North and South Sites",
+       x = "Species",
+       y = "Mean Volume",
+       fill = "Site") +
+  scale_fill_manual(values = c("mediumturquoise", "palegreen"),
+                    labels = c("North Site", "South Site")) +
+  theme_minimal()
+
+
+    ### 6. Regression line between volume and diameter   
+
+    # Creating the scatter plot
+ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Specie)) +
+  geom_point(alpha = 0.6, size = 1) +  # Scatter plot points with transparency
+  geom_smooth(method = "lm", se = FALSE, color = "black", size = 0.5) +  # Adding regression line
+  labs(title = "Correlation of Mean Diameter and Volume by Species",
+       x = "Mean Diameter (Mean D.)",
+       y = "Volume",
+       color = "Species") +  
+  theme_minimal()
