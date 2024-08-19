@@ -300,3 +300,192 @@ CST_N <-  data.frame(
 chisq.test(CST_N)
 
 dev.off()
+
+##08##
+# Acer platanoides
+# North
+AP_mean_north <- mean(AP_N$Volume)
+AP_median_north <- median(AP_N$Volume)
+AP_variance_north <- var(AP_N$Volume)
+AP_stdev_north <- sd(AP_N$Volume)
+# South
+AP_mean_south <- mean(AP_S$Volume)
+AP_median_south <- median(AP_S$Volume)
+AP_variance_south <- var(AP_S$Volume)
+AP_stdev_south <- sd(AP_S$Volume)
+
+# Fraxinus excelsior
+# North 
+FE_mean_north <- mean(FE_N$Volume)
+FE_median_north <- median(FE_N$Volume)
+FE_variance_north <- var(FE_N$Volume)
+FE_stdev_north <- sd(FE_N$Volume)
+# South
+FE_mean_south <- mean(FE_S$Volume)
+FE_median_south <- median(FE_S$Volume)
+FE_variance_south <- var(FE_S$Volume)
+FE_stdev_south <- sd(FE_S$Volume)
+
+# Quercus robur
+# North 
+QR_mean_north <- mean(QR_N$Volume)
+QR_median_north <- median(QR_N$Volume)
+QR_variance_north <- var(QR_N$Volume)
+QR_stdev_north <- sd(QR_N$Volume)
+# South
+QR_mean_south <- mean(QR_S$Volume)
+QR_median_south <- median(QR_S$Volume)
+QR_variance_south <- var(QR_S$Volume)
+QR_stdev_south <- sd(QR_S$Volume)
+#We compared volume within regions and species in addition to that we gonna compere more variable
+
+#The results might be the same as we had in volume calculations, 
+#because the diameter and height are directly used in volume calculations
+#Comparison of hightn mean diameter in whole forest
+mean(Trees$`Mean D.`)
+mean(Trees$Height)
+median(Trees$`Mean D.`)
+median(Trees$Height)
+var(Trees$`Mean D.`)
+var(Trees$Height)
+sd(Trees$`Mean D.`)
+sd(Trees$Height)
+#Comparison between North & South 
+#North
+mean(north$`Mean D.`)
+mean(north$Height)
+median(north$`Mean D.`)
+median(north$Height)
+var(north$`Mean D.`)
+var(north$Height)
+sd(north$`Mean D.`)
+sd(north$Height)
+#South
+mean(south$`Mean D.`)
+mean(south$Height)
+median(south$`Mean D.`)
+median(south$Height)
+var(south$`Mean D.`)
+var(south$Height)
+sd(south$`Mean D.`)
+sd(south$Height)
+
+#Now same but within species in different sites 
+#AP_N QR_N FE_N
+#AP_S QR_S FE_S
+mean(AP_N$`Mean D.`)
+mean(AP_N$Height)
+mean(AP_S$`Mean D.`)
+mean(AP_S$Height) 
+
+mean(QR_N$`Mean D.`)
+mean(QR_N$Height)
+mean(QR_S$`Mean D.`)
+mean(QR_S$Height)
+
+mean(FE_N$`Mean D.`)
+mean(FE_N$Height)
+mean(FE_S$`Mean D.`)
+mean(FE_S$Height)
+
+shapiro.test(Trees$Volume)
+shapiro.test(Trees$`Mean D.`)
+shapiro.test(Trees$Height)
+shapiro.test(Trees$`Health Status`)
+shapiro.test(north$Volume)
+shapiro.test(south$Volume)
+shapiro.test(north$`Mean D.`)
+shapiro.test(north$Height)
+shapiro.test(north$`Health Status`)
+shapiro.test(south$`Mean D.`)
+shapiro.test(south$Height)
+shapiro.test(south$`Health Status`
+shapiro.test(south$Area)
+shapiro.test(QR_N$Volume)
+shapiro.test(Trees$Volume[Trees$Specie == "Quercus robur"])
+shapiro.test(Trees$Volume[Trees$Specie == "Acer platanoides"])
+shapiro.test(Trees$Volume[Trees$Specie == "Fraxinus excelsior"])
+shapiro.test(QR_S$Volume)
+shapiro.test(FE_N$Volume)
+shapiro.test(FE_S$Volume)
+shapiro.test(AP_N$Volume)
+shapiro.test(AP_S$Volume)
+
+#####Some underdeveloped stuff#####
+
+Welch Two Sample t-test
+MVQRN <- QR_N$Volume
+MVQRS <- QR_S$Volume
+
+t.test(MVQRN,MVQRS, "two.sided", var.equal = FALSE)
+
+#To calculate Bernuli destribution try to do  as.factor T or F 
+
+#Calculation of covariance correlation coefficient
+cov(Trees$`Mean D.`, Trees$Height)
+cor(Trees$`Mean D.`, Trees$Height)
+cor(north$`Mean D.`, north$Height)
+cor(south$`Mean D.`, south$Height)
+
+north$`Health Status`[north$`Health Status` == 0]/north$`Health Status`
+compute(north$`Health Status`[north$`Health Status` == 0])
+XYZ <-  c (1,2,3,4,5,5,5,5,5,5,5,5)
+count(XYZ)
+View(north)
+### Graphs ###
+#Plots with regression model 
+x <- Trees$`Mean D.`
+y <- Trees$Height
+# fit a linear regression model
+lm(y ~ x)
+fit <- lm(y ~ x)
+summary(fit)$r.squared #Coefficient of Determination
+# create a scatter plot of the data
+plot(x, y)
+# add the regression line to the plot
+abline(fit, col = "red")
+View(south)
+
+plot(north$`Mean D.`, north$Volume)
+points(south$`Mean D.`, south$Volume, col="red")
+points(south$`Mean D.`[south$Specie == "Fraxinus excelsior"], col = "blue")
+
+Volume <-  data.frame(Site = c(Trees$Site),
+                       Volume = c(Trees$Volume))
+View(Volume)
+Volume$Site[Volume$Site == "N1"] <- "North"
+Volume$Site[Volume$Site == "N2"] <- "North"
+Volume$Site[Volume$Site == "N3"] <- "North"
+Volume$Site[Volume$Site == "S1"] <- "South"
+Volume$Site[Volume$Site == "S2"] <- "South"
+Volume$Site[Volume$Site == "S3"] <- "South"
+barplot(mean(Volume$Volume[Volume$Site == "North"]), mean(Volume$Volume[Volume$Site == "South"]))
+mean(Volume$Volume[Volume$Site == "North"])
+mean(Volume$Volume[Volume$Site == "South"])
+
+boxplot(Volume$Volume[Volume$Site == "North"])
+
+par(mfrow = c(1,2))
+boxplot(Volume$Volume[Volume$Site == "North"], ylim = c(0.0, 1.0))
+boxplot(Volume$Volume[Volume$Site == "South"], ylim = c(0.0, 1.0))
+
+###Chi### This whole thing is wrong !!!!!!
+CST <-data.frame(
+                      QR = c(QR_mean_north, QR_mean_south),
+                      FE = c(FE_mean_north, FE_mean_south),
+                      AP = c(AP_mean_north, AP_mean_south))
+CST
+
+chisq.test(CST)
+
+table(south$Specie)
+table(north$Specie)
+CST_N <-  data.frame(
+                    QR = c(33, 44),
+                    FE = c(33, 48),
+                    AP = c(29,21))
+
+chisq.test(CST_N)
+
+dev.off()
+
