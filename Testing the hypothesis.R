@@ -44,3 +44,6 @@ FE_S$Volume
 var.test(QR_N$Volume, QR_S$Volume)
 var.test(FE_N$Volume, FE_S$Volume)
 #Variance is not same 
+#Test statistic
+t.test(QR_N$Volume, QR_S$Volume,  var.equal = F)
+t.test(FE_N$Volume, FE_S$Volume, var.equal = F)
