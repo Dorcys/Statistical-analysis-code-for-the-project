@@ -286,3 +286,26 @@ shapiro.test(south$Height)    # not normally distributed
              # Since the p-value lies below the threshold of 0.05 we can conclude the the means of Volume
              # in the North and South sites are not equal, therefore we can reject the null hypothesis at 5% confidence level
 
+             
+##7. Correlation testing: using Pearson correlation coefficient to test whether a correlation exists between the Mean Diameter of trees and their Volume
+             
+             # H0: There is no correlation between the mean diameter and the volume of a tree (r = 0).
+             # H0: There is a positive correlation between the mean diameter and the volume of a tree (r > 0).
+             cor.test(Trees$`Mean D.`,Trees$Volume, method = "pearson")
+             
+             # Results:
+             #              Pearson's product-moment correlation
+             # 
+             # data:  Trees$`Mean D.` and Trees$Volume
+             # t = 12.641, df = 291, p-value < 2.2e-16
+             # alternative hypothesis: true correlation is not equal to 0
+             # 95 percent confidence interval:
+             #  0.5160068 0.6646335
+             # sample estimates:
+             #       cor 
+             # 0.5953901
+           
+             # Interpretation:
+             # Since the p value lies below the threshold of 0.05 we can reject the null hypothesis that no correlation
+             # exists between the mean diameter of trees and their volume. The value of 0.59 indicates that the two variables 
+             # are have a moderate positive correlation
