@@ -309,3 +309,24 @@ shapiro.test(south$Height)    # not normally distributed
              # Since the p value lies below the threshold of 0.05 we can reject the null hypothesis that no correlation
              # exists between the mean diameter of trees and their volume. The value of 0.59 indicates that the two variables 
              # are have a moderate positive correlation
+
+
+##8. Chi-square Test of Independence: to check if there is an association between health status of trees and the site that they are in (North or South)
+             
+             #H0: Health status of trees is independent of the site that they are in
+             #H1: Health status of trees and the site that they are in are dependent
+            
+             #Chi-square test of independence
+              suppressWarnings(
+             chisq.test(table(Trees_combined$`Health Status`, Trees_combined$Region)))
+            
+             # Results:
+             # Pearson's Chi-squared test with Yates' continuity correction
+             # 
+             # data:  table(Trees_combined$`Health Status`, Trees_combined$Region)
+             # X-squared = 0.92069, df = 1, p-value = 0.3373 
+              
+             # Interpretation:
+             # Since the p value does not lie below the threshold of 0.05, we cannot reject the null hypothesis,
+             # meaning that the Health Status of trees and the Site that they are in are independent from each other at 5% significance level
+              
