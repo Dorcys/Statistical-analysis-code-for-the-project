@@ -269,7 +269,7 @@ bar_positions <- barplot(mean_volumes,
                          names.arg = sites, 
                          col = c("#00B8E7", "#F8766D"),
                          main = "Mean Volume of Trees in North and South Sites",
-                         ylab = "Mean Volume",
+                         ylab = expression("Mean Volume"~(m^3)),
                          xlab = "Site",
                          ylim = c(0, 0.35))
 
@@ -434,7 +434,7 @@ ggplot(Trees_combined, aes(x = Region, y = Volume, fill = Region)) +
   scale_fill_manual(values = c("North" = "purple", "South" = "#F8766D")) +
   labs(title = "Volume of Trees in Each Site",
        x = "Region",
-       y = "Volume") +
+       y = expression("Mean Volume"~(m^3))) +
   theme_minimal() +
   theme(
     legend.position = "none",
@@ -473,7 +473,7 @@ ggplot(mean_volume_long, aes(x = Specie, y = Mean_Volume, fill = Region)) +
             vjust = -0.5, size = 3) +
   labs(title = "Mean Volume of Common Tree Species in North and South Sites",
        x = "Species",
-       y = "Mean Volume",
+       y = expression("Mean Volume"~(m^3)),
        fill = "Site") +
   scale_fill_manual(values = c("mediumturquoise", "palegreen"),
                     labels = c("North Site", "South Site")) +
@@ -488,7 +488,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Specie)) +
   geom_smooth(method = "lm", se = FALSE, color = "black", size = 0.5) +  # Adding regression line
   labs(title = "Correlation of Mean Diameter and Volume by Species",
        x = "Mean Diameter (Mean D.)",
-       y = "Volume",
+       y = expression("Mean Volume"~(m^3)),
        color = "Species") +  
   theme_minimal()
 
