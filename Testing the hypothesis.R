@@ -65,7 +65,7 @@ library(coin)
 
     # Histogram:
     # We can also visualize if our data is normally distributed by plotting it on a histogram
-hist(Trees$Volume, main = "Histogram of Tree Volume", xlab = "Volume", col = "lightblue", breaks = 20)
+hist(Trees$Volume, main = "Histogram of Tree Volume", xlab = expression("Mean Volume"~(m^3)), col = "lightblue", breaks = 20)
     # the data is heavily right skewed
 
     # Q-Q Plot:
@@ -266,8 +266,8 @@ shapiro.test(south$Height)    # not normally distributed
              
              # We can also visualize the distributions of Volumes based on Sites (North and South) using a histogram
              par(mfrow=c(1,2)) 
-             hist(north$Volume, main="Distribution of Volume in the North Site", xlab="Volume", col="lightblue")
-             hist(south$Volume, main="Distribution of Volume in the South Site", xlab="Volume", col="lightgreen")
+             hist(north$Volume, main="Distribution of Volume in the North Site", xlab= expression("Mean Volume"~(m^3)), col="lightblue")
+             hist(south$Volume, main="Distribution of Volume in the South Site", xlab= expression("Mean Volume"~(m^3)), col="lightgreen")
              
              #H0: The means of the volume in The North and South sites are equal
              #H1: The means of the volume in The North and South sites are not equal
