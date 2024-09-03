@@ -194,7 +194,7 @@ shapiro.test(south$Height)    # not normally distributed
 ##5. Correlation testing: using Pearson correlation coefficient to test whether a correlation exists between the Mean Diameter of trees and their Volume
              
              # H0: There is no correlation between the mean diameter and the volume variables of a tree (r = 0).
-             # H0: There exists a correlation between the mean diameter and the volume variables of a tree (r ≠ 0).
+             # H1: There exists a correlation between the mean diameter and the volume variables of a tree (r ≠ 0).
              cor.test(Trees$`Mean D.`,Trees$Volume, method = "pearson")
              
              # Results:
