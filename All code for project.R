@@ -492,18 +492,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Specie)) +
        color = "Species") +  
   theme_minimal()
 
-# Testing correlation
-cor.test(Trees$`Mean D.`,Trees$Volume)
-	#Pearson's product-moment correlation
-# Results: 
-# data:  Trees$`Mean D.` and Trees$Volume
-# t = 12.641, df = 291, p-value < 2.2e-16
-# alternative hypothesis: true correlation is not equal to 0
-# 95 percent confidence interval:
- 0.5160068 0.6646335
-# sample estimates:
-#      cor 
-0.5953901     # This value indicated that the variables 'Mean Diameter' and 'Volume' are moderatelt correlated
+
 
 
 
