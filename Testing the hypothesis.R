@@ -89,30 +89,8 @@ shapiro.test(south$Height)    # not normally distributed
              var.test(FE_N$Volume, FE_S$Volume) # variances are not equal
              var.test(AP_N$Volume, AP_S$Volume) # variances are not equal
 #---------------
+
 ## 1. Welch's t-test: to test the means of two datasets with unequal variances
-
-             #H0: The means of Volume of the Fraxinus excelsior specie in the North and South site are equal
-             #H1: The means of Volume of the Fraxinus excelsior specie in the North and South site are not equal
-             
-             
-             # Welch Two Sample t-test
-             t.test(FE_N$Volume, FE_S$Volume, alternative = "two.sided", var.equal = FALSE) 
-             
-             # Results:
-             # data:  FE_N$Volume and FE_S$Volume
-             # t = 9.9957, df = 34.524, p-value = 9.968e-12
-             # alternative hypothesis: true difference in means is not equal to 0
-             # 95 percent confidence interval:
-             #  0.2709357 0.4091217
-             # sample estimates:
-             #  mean of x  mean of y 
-             # 0.42751286 0.08748418            
-             
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the means of Fraxinus excelsior specie
-             # in the North and South sites are not equal, therefore we can reject the null hypothesis at 5% significance level
-
-## 2. Welch's t-test: to test the means of two datasets with unequal variances
              
              #H0: The means of Volume of Fraxinus excelsior specie in the North and South site are equal
              #H1: The means of Volume of Fraxinus excelsior species is greater in the North than in the South site
@@ -135,30 +113,7 @@ shapiro.test(south$Height)    # not normally distributed
              # in the North Site is greater than in the South site, therefore we can reject the null hypothesis at 5% csignificance level
              
                           
-## 3. Welch's t-test: to test the means of two datasets with unequal variances
-             
-             #H0: The means of Quercus robur specie in the North and South site are equal
-             #H1: The means of Quercus robur species in the North and South site are not equal
-             
-             
-             # Welch Two Sample t-test
-             t.test(QR_N$Volume, QR_S$Volume, alternative = "two.sided", var.equal = FALSE) 
-             
-             # Results:
-             # data:  QR_N$Volume and QR_S$Volume
-             # t = 11.843, df = 36.389, p-value = 4.803e-14
-             # alternative hypothesis: true difference in means is not equal to 0
-             # 95 percent confidence interval:
-             #  0.2215291 0.3130358
-             # sample estimates:
-             #  mean of x  mean of y 
-             # 0.35912813 0.09184569
-             
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the means of Quercus robur specie
-             # in the North and South sites are not equal, therefore we can reject the null hypothesis at 5% confidence level
-
-## 4. Welch's t-test: to test the means of two datasets with unequal variances
+## 2. Welch's t-test: to test the means of two datasets with unequal variances
              
              #H0: The means of Volume of the Quercus robur specie in the North and South site are equal
              #H1: The means of Volume of Quercus robur specie in the North site is greater than in the South
@@ -181,7 +136,7 @@ shapiro.test(south$Height)    # not normally distributed
              # Since the p-value lies below the threshold of 0.05 we can conclude the the mean Volume of Quercus robur specie
              # in the North site is greater than in the South site, therefore we can reject the null hypothesis at 5% confidence level
 
-## 5. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
+## 3. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
              
              # To compare the mean Volume of  Acer platanoides specie in North and South Sites
              # The shapiro wilk test above showed that the mean volume of Acer platanoides in the north site was not normally distributed,
@@ -207,7 +162,7 @@ shapiro.test(south$Height)    # not normally distributed
              # Acer platanoides specie in the North site is greater than in the South, therefore we can reject the null hypothesis at 5% confidence level
              
                                       
-## 6. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
+## 4. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
              
              # To compare the means of Volumes in North and South Sites
              # The shapiro wilk test above showed that the volume in the north site was not normally distributed,
@@ -236,7 +191,7 @@ shapiro.test(south$Height)    # not normally distributed
              # in the North and South sites are not equal, therefore we can reject the null hypothesis at 5% confidence level
 
              
-##7. Correlation testing: using Pearson correlation coefficient to test whether a correlation exists between the Mean Diameter of trees and their Volume
+##5. Correlation testing: using Pearson correlation coefficient to test whether a correlation exists between the Mean Diameter of trees and their Volume
              
              # H0: There is no correlation between the mean diameter and the volume variables of a tree (r = 0).
              # H0: There exists a correlation between the mean diameter and the volume variables of a tree (r ≠ 0).
@@ -260,7 +215,7 @@ shapiro.test(south$Height)    # not normally distributed
              # are have a moderate positive correlation
 
 
-##8. Chi-square Test of Independence: to check if there is an association between health status of trees and the site that they are in (North or South)
+##6. Chi-square Test of Independence: to check if there is an association between health status of trees and the site that they are in (North or South)
              
              #H0: Health status of trees is independent of the site that they are in
              #H1: Health status of trees and the site that they are in are dependent
