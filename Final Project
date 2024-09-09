@@ -290,7 +290,6 @@ legend("bottomleft", legend = c("Alive: 98.7%",
 mtext("Health Status of Trees in North and South Forests", 
       side = 1, line = -2, cex = 1.7, font = 2, outer = TRUE)
 
-dev.off()
 
 
 ## 3. BAR PLOT - Number of each species in both forests (North and South)
@@ -359,7 +358,6 @@ text(x = midpoints,
      xpd = TRUE, 
      cex = 0.8) 
 
-dev.off()
 
 
 ## 4. BOX PLOT - mean volume of trees in both forests
@@ -389,6 +387,7 @@ ggplot(Trees_combined, aes(x = Region, y = Volume, fill = Region)) +
     plot.title = element_text(hjust = 0.5) 
   ) +
   coord_cartesian(ylim = c(0, 0.8))  
+
 
 
 ## 5. BAR GRAPH - comparing the common species in both forests
@@ -428,6 +427,7 @@ ggplot(mean_volume_long, aes(x = Species, y = Mean_Volume, fill = Region)) +
   theme_minimal()
 
 
+
 ## 6. SCATTER PLOT WITH REGRESSION LINE - volume and diameter   
 
 # Creating the scatter plot
@@ -440,97 +440,9 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
        y = expression("Mean Volume"~(m^3)),
        color = "Species") + 
        theme_minimal()
-
-
-#### INFERENTIAL STATISTICS #### 
-
-# Testing correlation
-
-cor.test(Trees$`Mean D.`,Trees$Volume)
-#Pearson's product-moment correlation
-# Results: 
-# data:  Trees$`Mean D.` and Trees$Volume
-# t = 12.641, df = 291, p-value < 2.2e-16
-# alternative hypothesis: true correlation is not equal to 0
-# 95 percent confidence interval:
-# 0.5160068 0.6646335
-# sample estimates:
-#      cor 
-# 0.5953901     # This value indicated that the variables 'Mean Diameter' and 'Volume' are moderatelt correlated
-#Calculation of covariance correlation coefficient
-
-cov(Trees$`Mean D.`, Trees$Height)
-cor(Trees$`Mean D.`, Trees$Height)
-cor(north$`Mean D.`, north$Height)
-cor(south$`Mean D.`, south$Height)
-
-#Plots with regression model 
-x <- Trees$`Mean D.`
-y <- Trees$Height
-# fit a linear regression model
-fit <- lm(y ~ x)
-# create a scatter plot of the data
-plot(x, y)
-# add the regression line to the plot
-abline(fit, col = "red")
-
-
-####Testing the hypothesis####
-
-##First we need test if our data have normal distribution 
-#Shapiro test
-#General test 
-shapiro.test(Trees$Volume)
-shapiro.test(Trees$`Mean D.`)
-shapiro.test(Trees$Height)
-shapiro.test(Trees$`Health Status`)
-shapiro.test(Trees$Volume[Trees$Species == "Quercus robur"])
-shapiro.test(Trees$Volume[Trees$Species == "Acer platanoides"])
-shapiro.test(Trees$Volume[Trees$Species == "Fraxinus excelsior"])
-#North & South sites
-shapiro.test(north$Volume)
-shapiro.test(south$Volume)
-shapiro.test(north$`Mean D.`)
-shapiro.test(north$Height)
-shapiro.test(north$`Health Status`)
-shapiro.test(south$`Mean D.`)
-shapiro.test(south$Height)
-shapiro.test(south$`Health Status`)
-shapiro.test(south$Area)
-            
- #Species
-             shapiro.test(QR_N$Volume)
-             shapiro.test(QR_S$Volume)
+  
              
-             shapiro.test(FE_N$Volume)
-             shapiro.test(FE_S$Volume)
-             
-             shapiro.test(AP_N$Volume)
-             shapiro.test(AP_S$Volume)#0.01028 < 0.05
-             #From the output, the p-value > 0.05 
-             #implying that the distribution of the data are not significantly different from normal distribution. 
-             #In other words, we can assume the normality.
-             #We only can find normal distribution  in  2/3 species 
-             # In hypothesis testing we can only use Quercus robur & Fraxinus excelsior 
-             FE_mean_north > FE_mean_south
-             QR_mean_north > QR_mean_south
-             #Testing variance 
-             QR_N$Volume
-             QR_S$Volume
-             FE_N$Volume
-             FE_S$Volume
-             var.test(QR_N$Volume, QR_S$Volume)
-             var.test(FE_N$Volume, FE_S$Volume)
-             #Variance is not same 
-             #Test statistic
-             t.test(QR_N$Volume, QR_S$Volume,  var.equal = F)
-             t.test(FE_N$Volume, FE_S$Volume, var.equal = F)
-             
-             #cleaner code below             
-             #--------------------------------------
-        #################################################################   
-             
-# INFERENTIAL STATISTICS
+#### INFERENTIAL STATISTICS ####
              
              #required packages
              install.packages("coin") # For Mann-Whitney U test (wilcox_test)
@@ -579,8 +491,8 @@ shapiro.test(south$Area)
              
              #Shapiro-Wilk normality test
              
-             #data:  north$Volume
-             #W = 0.97544, p-value = 0.01465
+             # data:  north$Volume
+             # W = 0.97544, p-value = 0.01465
              
              
              shapiro.test(south$Volume) # DATA NORMALLY DISTRIBUTED
