@@ -473,9 +473,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              ## STATISTICAL CHECKS
              
              shapiro.test(Trees$Volume)
-             
              # Shapiro-Wilk normality test
-             
              # data:  Trees$Volume
              # = 0.85497, p-value = 6.491e-16
              
@@ -488,16 +486,13 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # Normality of the volume in the north site
              
              shapiro.test(north$Volume) # Data not normally distributed
-             
-             #Shapiro-Wilk normality test
-             
+             #Shapiro-Wilk normality test             
              # data:  north$Volume
              # W = 0.97544, p-value = 0.01465
              
              
              shapiro.test(south$Volume) # DATA NORMALLY DISTRIBUTED
-             # Shapiro-Wilk normality test
-             
+             # Shapiro-Wilk normality test             
              # data:  south$Volume
              # W = 0.98441, p-value = 0.07465
              
@@ -550,12 +545,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # sample estimates:
              #   mean of x  mean of y 
              # 0.42751286 0.08748418            
-             
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the mean Volume of Fraxinus excelsior specie
-             # in the North Site is greater than in the South site, therefore we can reject the null hypothesis at 5% csignificance level
-             
-             
+                
              
              ## 2. Welch's t-test: to test the means of two datasets with unequal variances
              
@@ -576,9 +566,6 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              #   mean of x  mean of y 
              # 0.35912813 0.09184569
              
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the mean Volume of Quercus robur specie
-             # in the North site is greater than in the South site, therefore we can reject the null hypothesis at 5% confidence level
              
              ## 3. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
              
@@ -600,11 +587,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # data:  AP_N$Volume and AP_S$Volume
              # W = 486.5, p-value = 0.0001796
              # alternative hypothesis: true location shift is greater than 0
-             
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the means of Volume of the
-             # Acer platanoides specie in the North site is greater than in the South, therefore we can reject the null hypothesis at 5% confidence level
-             
+                          
              
              ## 4. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
              
@@ -630,10 +613,6 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # W = 18614, p-value < 2.2e-16
              # alternative hypothesis: true location shift is not equal to 0
              
-             # Interpretation:
-             # Since the p-value lies below the threshold of 0.05 we can conclude the the means of Volume
-             # in the North and South sites are not equal, therefore we can reject the null hypothesis at 5% confidence level
-             
              
              ##5. Correlation testing: using Pearson correlation coefficient to test whether a correlation exists between the Mean Diameter of trees and their Volume
              
@@ -653,11 +632,6 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              #       cor 
              # 0.5953901
              
-             # Interpretation:
-             # Since the p value lies below the threshold of 0.05 we can reject the null hypothesis that no correlation
-             # exists between the mean diameter of trees and their volume. The value of 0.59 indicates that the two variables 
-             # are have a moderate positive correlation
-             
              
              ##6. Chi-square Test of Independence: to check if there is an association between health status of trees and the site that they are in (North or South)
              
@@ -674,9 +648,6 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # data:  table(Trees_combined$`Health Status`, Trees_combined$Region)
              # X-squared = 0.92069, df = 1, p-value = 0.3373 
              
-             # Interpretation:
-             # Since the p value does not lie below the threshold of 0.05, we cannot reject the null hypothesis,
-             # meaning that the Health Status of trees and the Site that they are in are independent from each other at 5% significance level
-             
+
              
              
