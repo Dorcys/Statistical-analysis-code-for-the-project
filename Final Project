@@ -465,7 +465,6 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # If the points fall along the line, this indicated that the data follows a normal distribution
              qqnorm(Trees$Volume, main = "Q-Q Plot of Tree Volume")
              qqline(Trees$Volume, col = "red", lwd = 2)
-             # the points do not fall on the 45 degree line which indicated that the data is not normally distributed
              
              #---------------
              # A more precise way to check for normality is by performing statistical tests
@@ -476,10 +475,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              # Shapiro-Wilk normality test
              # data:  Trees$Volume
              # = 0.85497, p-value = 6.491e-16
-             
-             # The p value is less than 0.05 which means we can reject the null hypothesis that the Volume of Trees data is normally distributed
-             
-             
+              
              
              # Checking normality for subsets
              
@@ -551,8 +547,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              
              #H0: The means of Volume of the Quercus robur specie in the North and South site are equal
              #H1: The means of Volume of Quercus robur specie in the North site is greater than in the South
-             
-             
+                          
              # Welch Two Sample t-test
              t.test(QR_N$Volume, QR_S$Volume, alternative = "greater", var.equal = FALSE) 
              
@@ -568,12 +563,7 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              
              
              ## 3. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
-             
-             # To compare the mean Volume of  Acer platanoides specie in North and South Sites
-             # The shapiro wilk test above showed that the mean volume of Acer platanoides in the north site was not normally distributed,
-             # meanwhile the mean volume of Acer platanoides in the south site was normally distributed
-             
-             
+                       
              #H0: The means of Volume of the Acer platanoides specie in the North and South sites are equal
              #H1: The means of Volume of the Acer platanoides specie in the North site is greater than in the South
              
@@ -591,11 +581,9 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              
              ## 4. Mann-Whitney U test (Wilcoxon rank-sum test): to test the means of not normally distributed data
              
-             # To compare the means of Volumes in North and South Sites
-             # The shapiro wilk test above showed that the volume in the north site was not normally distributed,
-             # meanwhile the volume in the south site was normally distributed
-             
-             # We can also visualize the distributions of Volumes based on Sites (North and South) using a histogram
+             # The shapiro wilk test aboved showed the non normality of the volume in the north site,
+             # and normality of the volume in the south site, however we can also visualize the distributions of 
+             # Volumes based on Sites (North and South) using a histogram
              par(mfrow=c(1,2)) 
              hist(north$Volume, main="Distribution of Volume in the North Site", xlab= expression("Mean Volume"~(m^3)), col="lightblue")
              hist(south$Volume, main="Distribution of Volume in the South Site", xlab= expression("Mean Volume"~(m^3)), col="lightgreen")
@@ -618,7 +606,8 @@ ggplot(Trees, aes(x = `Mean D.`, y = Volume, color = Species)) +
              
              # H0: There is no correlation between the mean diameter and the volume variables of a tree (r = 0).
              # H1: There exists a correlation between the mean diameter and the volume variables of a tree (r ≠ 0).
-             cor.test(Trees$`Mean D.`,Trees$Volume, method = "pearson")
+            
+              cor.test(Trees$`Mean D.`,Trees$Volume, method = "pearson")
              
              # Results:
              #              Pearson's product-moment correlation
